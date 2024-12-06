@@ -24,7 +24,7 @@ public class BaseConsumer<R extends Record, V> {
     private final Repository<R> repository;
     private final ExecutorService executorService;
     private KafkaConsumer<String, V> consumer;
-    protected final RecordMapper<V, R> protoRecordMapper;
+    final RecordMapper<V, R> protoRecordMapper;
     private volatile boolean running = true;
 
     @Autowired
@@ -77,9 +77,9 @@ public class BaseConsumer<R extends Record, V> {
 
     @PreDestroy
     public void cleanup() {
+        running = false;
         if (consumer != null) {
             consumer.close();
         }
-        running = false;
     }
 }
