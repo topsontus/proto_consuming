@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.example.demo.protos;
+
+option java_multiple_files = true;
+
+// Сообщение для ошибки промо-кода
+message FailedPromo {
+    // Сообщение об ошибке
+    message Error {
+        string type = 1;    // Тип ошибки
+        string message = 2; // Сообщение об ошибке
+    }
+
+    Error error = 1;              // Ошибка, произошедшая при обработке промо-кода
+    int32 promocode_id = 2;       // Идентификатор промо-кода
+    string promocode_code = 3;    // Код промо-кода
+    int32 promotion_id = 4;       // Идентификатор акции
+    string order_uuid = 5;        // Уникальный идентификатор заказа
+    string user_uuid = 6;        // Уникальный идентификатор юзера
+}
