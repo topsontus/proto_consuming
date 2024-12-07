@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -22,7 +24,7 @@ public class FailedPromoRepositoryTest {
     private FailedPromoRepository failedPromoRepository;
 
     @Test
-    void testCreateFailedPromo() {
+    void testCreateFailedPromo() throws SQLException {
         String insertSql = "INSERT INTO failed_promos (error_type, error_message, promocode_id, promocode_code, promotion_id, order_uuid, user_uuid) VALUES (?, ?, ?, ?, ?, ?, ?)";
         FailedPromoRecord record = new FailedPromoRecord(null, "error_type", "error_message", 321, "promocode_code",
                 123, "order_uuid", "user_uuid", null, null);
