@@ -3,7 +3,9 @@ package com.example.demo.deserializer;
 import com.example.demo.protos.FailedPromo;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.kafka.common.serialization.Deserializer;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FailedPromoDeserializer implements Deserializer<FailedPromo> {
     @Override
     public FailedPromo deserialize(String topic, byte[] bytes) {
